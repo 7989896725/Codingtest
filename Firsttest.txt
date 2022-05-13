@@ -1,0 +1,141 @@
+ 1)  package programs;
+
+import java.io.FileReader;
+ import java.io.FileWriter;
+   import java.io.IOException;
+
+public class Q1 {
+
+	public static void main(String[] args) {
+		try {
+			FileReader fr=new FileReader("C:\\files\\File1.txt");
+			int c;
+			char ch;
+			String str="";
+            while ((c = fr.read()) != -1) {
+               ch= (char) c;
+               str=str+ch;
+            }
+            fr.close();
+            System.out.println(str);
+           FileWriter fw=new FileWriter("C:\\files\\File2.txt");
+            fw.append(str);
+            fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+}
+	}
+}
+
+
+
+2)  package programs;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class Q3{
+
+public static void main(String[] args) {
+sortByKeyUsingTreeMap();
+sortByKeyJava8Stream();
+}
+
+private static void sortByKeyUsingTreeMap()
+{
+Map<String, Integer> unSortedMap = getUnSortedMap();
+
+System.out.println("Unsorted Map : " + unSortedMap);
+
+Map<String, Integer> sortedMap = new TreeMap<String, Integer>(unSortedMap);
+
+System.out.println("Sorted Map : " + sortedMap);
+
+Map<String, Integer> reverseSortedMap = new TreeMap<String, Integer>(Collections.reverseOrder());
+reverseSortedMap.putAll(unSortedMap);
+
+System.out.println("Reverse Sorted Map : " + reverseSortedMap);
+}
+private static void sortByKeyJava8Stream()
+{
+Map<String, Integer> unSortedMap = getUnSortedMap();
+
+System.out.println("Unsorted Map : " + unSortedMap);
+
+LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+unSortedMap.entrySet().stream().sorted(Map.Entry.comparingByKey())
+.forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+
+System.out.println("Sorted Map : " + sortedMap);
+
+LinkedHashMap<String, Integer> reverseSortedMap = new LinkedHashMap<>();
+unSortedMap.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
+.forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
+
+System.out.println("Reverse Sorted Map : " + reverseSortedMap);
+}
+
+private static Map<String, Integer> getUnSortedMap()
+{
+Map<String, Integer> unsortMap = new HashMap<>();
+unsortMap.put("naveen", 1);
+unsortMap.put("sandepp", 5);
+unsortMap.put("ajay", 6);
+unsortMap.put("manoj", 8);
+return unsortMap;
+}
+}
+
+
+
+3)package programs;
+
+public class Q2 {
+public static void main(String[] args) {
+	String S="Harry Potter in his magical Island";
+	char[] array = S.toCharArray();
+			int count = 1;
+			int max = 0;
+			char maxChar = 0;
+			for(int i=1; i<array.length; i++){ 
+			    if(array[i]==array[i-1]){
+			        count++;
+			    } else {
+			        if(count>max){  
+			            max=count;
+			            maxChar=array[i-1];
+			        }
+			        count = 1; 
+			    }
+			}
+			if(count>max){
+			    maxChar=array[array.length-1];
+			}
+			System.out.println("most repeating character is "+maxChar);
+}
+	
+}
+
+
+
+
+4)   package programs;
+import java.util.Scanner;
+
+public class Q4 {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int fact=1;
+		for (int i = n; i >=1; i--) {
+			fact=fact*i;
+		}
+		System.out.println(fact);
+	}
+}
+
